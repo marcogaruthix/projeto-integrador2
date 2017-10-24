@@ -1,0 +1,7 @@
+.no-margin-left{
+	margin-left: 0 !important;
+}
+
+.no-float{
+	float: initial !important;
+}
