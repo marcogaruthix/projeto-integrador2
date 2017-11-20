@@ -13,9 +13,9 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600, titleBarStyle: 'hiddenInset'})
+  mainWindow = new BrowserWindow({width: 1024, height: 768, titleBarStyle: 'hiddenInset'})
   mainWindow.setMenu(null)
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/pages/login/index.html');
