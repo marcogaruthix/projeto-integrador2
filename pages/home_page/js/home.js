@@ -1,3 +1,5 @@
+var HOST = 'http://faculdade.adversithink.com/api/';
+
 $(document).ready(function() {
     $('select').material_select();
     getReleases(plot, 'now')
@@ -45,7 +47,7 @@ function showCard(el){
 function getReleases(callback, callback_period = null){
 	releases = [];
     local = JSON.parse(localStorage.getItem('user'));
-    url = 'http://localhost:8000/api/user/releases?user_id=' + local.id;
+    url = HOST + 'user/releases?user_id=' + local.id;
     //console.log(url);
     webRequest(url, callback, 'POST', callback_period);
 }
@@ -53,7 +55,7 @@ function getReleases(callback, callback_period = null){
 function getCategories(callback, callback_data = null){
 	categories = [];
     local = JSON.parse(localStorage.getItem('user'));
-    url = 'http://localhost:8000/api/category/all';
+    url = HOST + 'category/all';
     //console.log(url);
     webRequest(url, callback, 'POST', callback_data);
 }
@@ -69,7 +71,7 @@ function release(){
 	};
 
 	var request = $.ajax({
-	  url: "http://localhost:8000/api/release/create",
+	  url: HOST + "release/create",
 	  method: "POST",
 	  data: data,
 	  dataType: "json"
@@ -95,7 +97,7 @@ function createCategory(){
 	console.log(data);
 
 	var request = $.ajax({
-	  url: "http://localhost:8000/api/category/create",
+	  url: HOST + "category/create",
 	  method: "POST",
 	  data: data,
 	  dataType: "json"

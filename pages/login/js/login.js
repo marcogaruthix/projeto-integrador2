@@ -1,4 +1,4 @@
-//const storage = require('electron-storage');
+var HOST = 'http://faculdade.adversithink.com/api/';
 init();
 
 function init(){
@@ -42,7 +42,8 @@ function autenticar(){
       alert('Campo(s) invalido(s)');
       return;
     }    
-    url = 'http://localhost:8000/api/user/login?email=' + email + '&password=' + senha;
+    url = HOST + 'user/login?email=' + email + '&password=' + senha;
+    console.log(url);
     webRequest(url, autenticarCallback, 'POST');
 }
 

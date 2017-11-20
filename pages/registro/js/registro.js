@@ -1,3 +1,5 @@
+var HOST = 'http://faculdade.adversithink.com/api/';
+
 function webRequest(url, callback, type = 'GET') {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -17,7 +19,7 @@ function registrarCallback(registro){
     nome = document.getElementById('icon_prefix').value;
     email = document.getElementById('icon_email').value;
     password = document.getElementById('icon_password').value;
-    localStorage.setItem('user', JSON.stringify({"id" : registro.body.id "name" : nome, "email" : email, "password" : btoa(password)}) );
+    localStorage.setItem('user', JSON.stringify({"id" : registro.body.id, "name" : nome, "email" : email, "password" : btoa(password)}) );
 
     document.getElementById('icon_prefix').value = "";
     document.getElementById('icon_email').value = "";
@@ -39,7 +41,7 @@ function registrar(){
       alert('Campo(s) invalido(s)');
       return;
     }    
-    url = 'http://localhost:8000/api/user/create?email=' + email + '&password=' + senha + '&name=' + nome;
+    url = HOST + 'user/create?email=' + email + '&password=' + senha + '&name=' + nome;
     webRequest(url, registrarCallback, 'POST');
 }
 
