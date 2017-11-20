@@ -2,155 +2,187 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Entrar</title>
+    <title>CASH Control - Home</title>
     <link rel="stylesheet" type="text/css" href="../../node_modules/materialize-css/dist/css/materialize.css">
     <!--<link rel="stylesheet" type="text/css" href="../../css/utils.css">-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body style="background: #ececec">
-      <nav class="nav-extended">
-        <div class="nav-wrapper">
-          <a href="#" id="display_name" class="brand-logo"></a>
-          <ul id="nav-mobile" class="right">
-            <li><a href="../login/index.html" onclick="logout()">SAIR</a></li>
-          </ul>
-        </div>
-        <div class="nav-content">
-          <ul class="tabs tabs-transparent" style="background: #ea6667">
-            <li class="tab"><a href="#test1" class="active" >Principal</a></li>
-            <li class="tab"><a href="#test2">Novo Lançamento</a></li>
-            <li class="tab"><a href="#test3">Histórico</a></li>
-            <li class="tab"><a href="#test4">Perfil</a></li>
-            <li class="tab"><a href="#test4">Configuração</a></li>
-          </ul>
-          <ul class="side-nav" id="mobile-demo">
-            <li><a href="collapsible.html">SAIR</a></li>
-          </ul>
-        </div>
-      </nav>
-      <div style="display: none" id="test1" class="col s12"></div>
-      <div style="display: none" id="test2" class="col s12"></div>
-      <div style="display: none" id="test3" class="col s12"></div>
-      <div style="display: none" id="test4" class="col s12"></div>
-
-
+    <nav class="nav-extended">
+      <div class="nav-wrapper">
+        <a href="#" id="display_name" class="brand-logo center"></a>
+        <ul id="nav-mobile" class="right">
+          <li><a href="../login/index.html" onclick="logout()">SAIR</a></li>
+        </ul>
+      </div>
+      <div class="nav-content">
+        <ul class="tabs tabs-transparent" style="background: #ea6667">
+          <li onclick="showCard(this)" class="tab" data-show=".graph-container"><a href="#test1" class="active" >Principal</a></li>
+          <li onclick="getCategories(showNewRelease, this)" class="tab" data-show=".newrelease-container"><a href="#test2">Novo Lançamento</a></li>
+          <li onclick="showCard(this)" class="tab" data-show=".newcategory-container"><a href="#test2">Nova Categoria</a></li>
+          <li onclick="getReleases(showHistory, this)" class="tab" data-show=".history-container"><a href="#test3">Histórico</a></li>
+          <!-- <li class="tab"><a href="#test4">Perfil</a></li>
+          <li class="tab"><a href="#test4">Configuração</a></li> -->
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><a href="collapsible.html">SAIR</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div style="display: none" id="test1" class="col s12"></div>
+    <div style="display: none" id="test2" class="col s12"></div>
+    <div style="display: none" id="test3" class="col s12"></div>
+    <div style="display: none" id="test4" class="col s12"></div>
     <div class="row">
-      <div class="col s12">    
-        <div class="card" style="background-color : #ee6e73">
+      <div class="col s12">
+        <div class="card graph-container" style="background-color : #ee6e73">
           <div class="card-content" style="color : white">
             <center>  <p>Vamos direto ao ponto...</p> </center>
           </div>
           <div class="card-tabs">
             <ul class="tabs tabs-fixed-width" style="background-color : #ee6e73">
-              <li class="tab"><a class="active" href="#a1" style="color: white !important;">Hoje</a></li>
-              <li class="tab"><a href="#a2" style="color: white !important;">Essa semana</a></li>
-              <li class="tab"><a href="#a3" style="color: white !important;">Esse mês</a></li>
+              <li class="tab"><a class="active" href="#a1" style="color: white !important;" onclick="getReleases(plot, 'now')" >Hoje</a></li>
+              <li class="tab"><a href="#a2" style="color: white !important;" onclick="getReleases(plot, 'week')">Essa semana</a></li>
+              <li class="tab"><a href="#a3" style="color: white !important;" onclick="getReleases(plot, 'month')">Esse mês</a></li>
             </ul>
           </div>
-          <div class="card-content grey lighten-4">
-              <canvas id="myChart" width="300" height="120"></canvas>
+          <div class="card-content grey lighten-4" style="min-height: 430px">
+            <canvas id="myChart" width="300" height="120"></canvas>
             <div style="display: hidden" id="a1"></div>
             <div style="display: hidden" id="a2"></div>
             <div style="display: hidden" id="a3"></div>
           </div>
         </div>
-
-        <div class="card" style="background-color : #ee6e73">
+        <!-- <div class="card" style="background-color : #ee6e73">
           <div class="card-content" style="color : white">
             <center>  <p>Me conte um pouco mais sobre você...</p> </center>
           </div>
           <center>
-            <div class="card-content grey lighten-4">
-               <form action="#">
-                  <label for="rf1">O quanto o você ganha?</label>
-                  <p class="range-field" id="rf1" style="width: 70%">
-                    <input type="range" id="test5" min="100" max="10000" />
-                  </p>
-
-
-                  <p class="range-field" id="rf1" style="width: 70%">
-                    <label for="rf2">Deseja receber notificação a partir de:</label>
-                      <input type="range" id="test5" min="100" max="10000" />
-                  </p>
-
-                  <!--<label for="rf3">Mes começa dia:</label>
-                    <input type="number" id="test5" min="1" max="31" style="display: block;width: 50px;" />
-                  <label for="rf4">Mes termina dia:</label>
-                    <input type="number" id="test5" min="1" max="31" style="display: block;width: 50px;" />-->
-
-                    <div class="action-btn toolbar">
-                      <a class="btn-floating btn-large red">
-                        <i class="large material-icons">mode_edit</i>
-                      </a>
-                    </div>
-
-                </form>
-            </div>
+          <div class="card-content grey lighten-4">
+            <form action="#">
+              <label for="rf1">O quanto o você ganha?</label>
+              <p class="range-field" id="rf1" style="width: 70%">
+                <input type="range" id="test5" min="100" max="10000" />
+              </p>
+              <p class="range-field" id="rf1" style="width: 70%">
+                <label for="rf2">Deseja receber notificação a partir de:</label>
+                <input type="range" id="test5" min="100" max="10000" />
+              </p>
+              <label for="rf3">Mes começa dia:</label>
+              <input type="number" id="test5" min="1" max="31" style="display: block;width: 50px;" />
+              <label for="rf4">Mes termina dia:</label>
+              <input type="number" id="test5" min="1" max="31" style="display: block;width: 50px;" />-->
+              <!--<div class="action-btn toolbar">
+                <a class="btn-floating btn-large red">
+                  <i class="large material-icons">mode_edit</i>
+                </a>
+              </div>
+            </form>
+          </div>
+          </center>
+        </div> -->
+        <div class="card history-container" style="background-color : #ee6e73; display: none">
+          <div class="card-content" style="color : white">
+            <center>  <p>Seu histórico...</p> </center>
+          </div>
+          <center>
+          <div class="card-content grey lighten-4" style="min-height: 430px">
+            <table class="striped centered">
+            </table>
+          </div>
           </center>
         </div>
+        <div class="card newrelease-container" style="background-color : #ee6e73; display: none">
+          <div class="card-content" style="color : white">
+            <center>  <p>Novo lançamento...</p> </center>
+          </div>
+          <center>
+          <div class="card-content grey lighten-4" style="min-height: 430px">
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">description</i>
+                    <input name="description" id="description" type="text" class="validate">
+                    <label for="description">Descrição</label>
+                  </div>
+                  <div class="input-field col s4">
+                    <i class="material-icons prefix">attach_money</i>
+                    <input name="value" id="value" type="text" class="validate" value="0.00">
+                    <label for="value">Valor</label>
+                  </div>
+                  <div class="input-field col s4">
+                    <select id="method_id" name="method_id">
+                      <option value="1">Dinheiro</option>
+                      <option value="2">Cartão de crédito</option>
+                      <option value="3">Cartão de débito</option>
+                    </select>
+                    <label>Metodo</label>
+                  </div>
+                  <div class="input-field col s4">
+                    <select id="category_id" name="method_id">
 
-
+                    </select>
+                    <label>Categoria</label>
+                  </div>
+                  <div class="input-field col s4 offset-s4">
+                    <a onclick="release()" class="waves-effect waves-light btn">Lançar</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          </center>
+        </div>
+        <div class="card newcategory-container" style="background-color : #ee6e73; display: none;">
+          <div class="card-content" style="color : white;">
+            <center>  <p>Nova categoria...</p> </center>
+          </div>
+          <center>
+          <div class="card-content grey lighten-4" style="min-height: 430px">
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">name</i>
+                    <input name="description" id="category-name" type="text" class="validate">
+                    <label for="category-name">Nome</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">description</i>
+                    <input name="description" id="category-description" type="text" class="validate">
+                    <label for="category-description">Descrição</label>
+                  </div>
+                  <div class="input-field col s4 offset-s4">
+                    <a onclick="createCategory()" class="waves-effect waves-light btn">Criar</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          </center>
+        </div>
       </div>
     </div>
-
-        <footer class="page-footer" style=" bottom: 0px; position: relative; width: 100%;padding-top: 0px">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">CASHcontrol</h5>
-                <p class="grey-text text-lighten-4">Com esse aplicativo você pode ficar por dentro de tudo que você gastou no mês de forma simples e facil.</p>
-              </div>
-            </div>
+    <footer class="page-footer" style=" bottom: 0px; position: relative; width: 100%;padding-top: 0px">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">CASHcontrol</h5>
+            <p class="grey-text text-lighten-4">Com esse aplicativo você pode ficar por dentro de tudo que você gastou no mês de forma simples e facil.</p>
           </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2017 Copyright Text
-            </div>
-          </div>
-        </footer>
-
-      <script type="text/javascript" src="js/home.js"></script>
-      <script type="text/javascript" src="../../node_modules/hammerjs/hammer.min.js" onload="window.Hammer = module.exports;"></script>
-      <script type="text/javascript" src="../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
-      <script type="text/javascript" src="../../node_modules/chart.js/dist/Chart.js"></script>
-<script>
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Aluguel", "Faculdade", "Despesas", "Alimentação", "Combustivel", "Outros gastos"],
-        datasets: [{
-            label: '# of Votes ',
-            data: [22, 28, 15, 13, 7, 10],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(215, 92, 112, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-</script>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          © 2017 Copyright Text
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="../../node_modules/hammerjs/hammer.min.js" onload="window.Hammer = module.exports;"></script>
+    <script type="text/javascript" src="../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../../node_modules/chart.js/dist/Chart.js"></script>
+    <script type="text/javascript" src="../../js/moment.min.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
   </body>
 </html>

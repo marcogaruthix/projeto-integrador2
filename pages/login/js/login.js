@@ -24,7 +24,7 @@ function autenticarCallback(login){
   if(login.status_code == 200){
     email = document.getElementById('icon_email').value;
     senha = document.getElementById('icon_password').value;
-    localStorage.setItem('user' , JSON.stringify({"email" : email, "name" : login.body.name, "password" : btoa(senha)} ));
+    localStorage.setItem('user' , JSON.stringify({"id" : login.body.id, "email" : email, "name" : login.body.name, "password" : btoa(senha)} ));
     location.href = '../home_page/index.html';
   }
   else{

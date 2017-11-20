@@ -17,7 +17,7 @@ function registrarCallback(registro){
     nome = document.getElementById('icon_prefix').value;
     email = document.getElementById('icon_email').value;
     password = document.getElementById('icon_password').value;
-    localStorage.setItem('user', JSON.stringify({"name" : nome, "email" : email, "password" : btoa(password)}) );
+    localStorage.setItem('user', JSON.stringify({"id" : registro.body.id "name" : nome, "email" : email, "password" : btoa(password)}) );
 
     document.getElementById('icon_prefix').value = "";
     document.getElementById('icon_email').value = "";
